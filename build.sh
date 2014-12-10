@@ -256,7 +256,7 @@ function build_mapnik {
       fi
   fi
   if [ ! -d ${MAPNIK_SOURCE} ]; then
-      git clone --quiet https://github.com/mapnik/mapnik.git ${MAPNIK_SOURCE} -b ${MAPNIK_BRANCH}
+      git clone --quiet https://github.com/cartodb/mapnik.git ${MAPNIK_SOURCE} -b ${MAPNIK_BRANCH}
       git branch -v
   fi
   if [[ "${CXX11}" == false ]]; then
