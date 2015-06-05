@@ -250,7 +250,7 @@ function build_mapnik {
   fi
   if [[ "${MAPNIK_BRANCH:-false}" == false ]]; then
       if [[ "${CXX11}" == false ]]; then
-          export MAPNIK_BRANCH="2.3.x"
+          export MAPNIK_BRANCH="2.3.x.twkb"
       else
           export MAPNIK_BRANCH="master"
       fi
