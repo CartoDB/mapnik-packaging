@@ -108,10 +108,10 @@ fi
 echo "BINDINGS = '${MAPNIK_BINDINGS}'" >> config.py
 
 set_dl_path "${SHARED_LIBRARY_PATH}"
-LIBRARY_PATH="${SHARED_LIBRARY_PATH}" ./configure ${HOST_ARGS}
+LIBRARY_PATH="${SHARED_LIBRARY_PATH}" ./configure ${HOST_ARGS} ENABLE_STATS=True ENABLE_LOG=True
 if [[ ${CXX11} == true ]]; then
   # single job compiles first
-  LIBRARY_PATH="${SHARED_LIBRARY_PATH}" python scons/scons.py -j1 \
+  LIBRARY_PATH="${SHARED_LIBRARY_PATH}" python scons/scons.py ENABLE_STATS=True ENABLE_LOG=True -j1 \
   --config=cache --implicit-cache --max-drift=1 \
   src/json/libmapnik-json.a \
   src/wkt/libmapnik-wkt.a \
@@ -121,7 +121,7 @@ if [[ ${CXX11} == true ]]; then
   src/image_filter_types.os
 fi
 # then build the rest
-LIBRARY_PATH="${SHARED_LIBRARY_PATH}" JOBS=${JOBS} $MAKE
+LIBRARY_PATH="${SHARED_LIBRARY_PATH}" JOBS=${JOBS} CPPDEFINES="-DMAPNIK_STATS" $MAKE
 $MAKE install
 
 # https://github.com/mapnik/mapnik/issues/1901#issuecomment-18920366
